@@ -1,5 +1,5 @@
-function GameContainer() {
-  return <div className="game-container"></div>;
+function GameContainer({ children }) {
+  return <div className="game-container">{children}</div>;
 }
 
 export default GameContainer;

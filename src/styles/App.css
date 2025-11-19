@@ -53,6 +53,7 @@ button {
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -73,6 +74,41 @@ button:focus-visible {
   flex-direction: column;
   align-items: center;
   margin: 20px;
+}
+
+.score-container {
+  display: flex;
+  min-width: 250px;
+  margin: 0 0 20px;
+  justify-content: space-between;
+}
+
+.game-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+  margin: 10px;
+  width: 80%;
+  height: 700px;
+}
+
+.card {
+  flex: 1 1 200px;
+  max-width: 280px;
+  max-height: 380px;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.card-name {
+  margin-top: auto;
 }
 
 @media (prefers-color-scheme: light) {
