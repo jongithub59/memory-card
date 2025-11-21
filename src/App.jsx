@@ -4,27 +4,37 @@ import DifficultyContainer from "./components/DifficultyContainer";
 import ScoreTracker from "./components/ScoreTracker";
 import GameContainer from "./components/GameContainer";
 import Card from "./components/Card";
-import shiv_img from "./assets/shiv.png";
-import pocket_img from "./assets/pocket.png";
-import holliday_img from "./assets/holliday.png";
+import shiv from "./assets/shiv.png";
+import pocket from "./assets/pocket.png";
+import holliday from "./assets/holliday.png";
+import warden from "./assets/warden.png";
 import "./styles/App.css";
 
 function App() {
-  // example data for cards to show roughly what game will look like
-  const heroes = {
-    shiv: {
+  // array of card objects containing their name and image url, can change later to fetch from api later
+  const heroes = [
+    {
       name: "Shiv",
-      img: shiv_img,
+      img: shiv,
     },
-    pocket: {
+    {
       name: "Pocket",
-      img: pocket_img,
+      img: pocket,
     },
-    holliday: {
+    {
       name: "Holliday",
-      img: holliday_img,
+      img: holliday,
     },
-  };
+    {
+      name: "Warden",
+      img: warden,
+    },
+  ];
+
+  // create an array of Card components from hero array to then render with GameContainer
+  const heroCards = heroes.map((hero) => {
+    return <Card key={hero.name} url={hero.img} name={hero.name} />; // props for each Card
+  });
 
   return (
     <>
@@ -33,11 +43,7 @@ function App() {
           <ScoreTracker></ScoreTracker>
           <DifficultyContainer></DifficultyContainer>
         </Header>
-        <GameContainer>
-          <Card {...heroes.shiv}></Card>
-          <Card {...heroes.pocket}></Card>
-          <Card {...heroes.holliday}></Card>
-        </GameContainer>
+        <GameContainer>{heroCards}</GameContainer>
       </div>
     </>
   );

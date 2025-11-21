@@ -96,8 +96,8 @@ button:focus-visible {
 
 .card {
   flex: 1 1 200px;
-  max-width: 280px;
-  max-height: 380px;
+  max-width: 350px;
+  max-height: 450px;
   border-radius: 10px;
   padding: 10px;
   display: flex;
@@ -105,6 +105,9 @@ button:focus-visible {
   align-items: center;
   cursor: pointer;
   overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .card-name {
