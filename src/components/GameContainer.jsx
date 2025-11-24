@@ -3,6 +3,7 @@ import shiv from "../assets/shiv.png";
 import pocket from "../assets/pocket.png";
 import holliday from "../assets/holliday.png";
 import warden from "../assets/warden.png";
+import abrams from "../assets/abrams.png";
 
 function GameContainer(props) {
   // array of card objects containing their name and image url, can change later to fetch from api later
@@ -14,6 +15,10 @@ function GameContainer(props) {
     {
       name: "Pocket",
       img: pocket,
+    },
+    {
+      name: "Abrams",
+      img: abrams,
     },
     {
       name: "Holliday",

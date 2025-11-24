@@ -87,7 +87,7 @@ button:focus-visible {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 40px;
+  gap: 50px;
   padding: 20px;
   margin: 10px;
   width: 80%;
@@ -95,12 +95,11 @@ button:focus-visible {
 }
 
 .card {
-  flex: 1 1 250px;
-  /* min-height: 300px; */
-  max-width: 350px;
-  max-height: 450px;
+  flex: 1 1 240px;
+  max-width: 240px;
+  max-height: 400px;
   border-radius: 10px;
-  padding: 10px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,7 +114,8 @@ button:focus-visible {
   margin-top: auto;
 }
 
-.game-over {
+.game-over,
+.game-win {
   display: flex;
   align-items: center;
   justify-content: center;

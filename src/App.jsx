@@ -34,6 +34,12 @@ function App() {
     console.log(`Game Over: ${isGameOver}`);
   }
 
+  // reset best score then restart as normal
+  function gameWon() {
+    setBestScore(0);
+    restartGame();
+  }
+
   function restartGame() {
     setScore(0);
     setIsGameOver(false);
@@ -46,17 +52,27 @@ function App() {
           <ScoreTracker score={score} bestScore={bestScore}></ScoreTracker>
           <DifficultyContainer></DifficultyContainer>
         </Header>
-        {!isGameOver && (
+        {/* display game if player has not lost or reached the maximum score */}
+        {!isGameOver && score < 5 && (
           <GameContainer
             setGameOver={gameOver}
             incrementScore={incrementScore}
           ></GameContainer>
         )}
 
+        {/* display game over screen if player lost */}
         {isGameOver === true && (
           <div className="game-over">
             <p>Game Over. Try again?</p>{" "}
             <button onClick={restartGame}>Restart</button>
+          </div>
+        )}
+
+        {/* display victory screen if player wins */}
+        {score === 5 && (
+          <div className="game-win">
+            <p>You Win. Play again?</p>{" "}
+            <button onClick={gameWon}>Restart</button>
           </div>
         )}
       </div>
