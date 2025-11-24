@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import DifficultyContainer from "./components/DifficultyContainer";
 import ScoreTracker from "./components/ScoreTracker";
@@ -13,6 +13,21 @@ function App() {
   function incrementScore() {
     setScore(score + 1);
   }
+
+  // set bestscore equal to score when bestscore is 0 or less than score when incrementScore() runs
+  function incrementBestScore() {
+    if (bestScore === 0) {
+      setBestScore(score);
+    }
+    if (bestScore < score) {
+      setBestScore(score);
+    }
+  }
+
+  // calculate best score when score state changes
+  useEffect(() => {
+    incrementBestScore();
+  }, [score]);
 
   function gameOver() {
     setIsGameOver(true);

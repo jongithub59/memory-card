@@ -6,11 +6,11 @@ function Card(props) {
 
   const handleClick = () => {
     if (isClicked) {
-      console.log("already clicked, game over");
+      console.log(`${props.name} already clicked, game over`);
       props.setGameOver();
     } else {
       setIsClicked(true);
-      console.log("clicked, move to next round");
+      console.log(`${props.name} clicked, move to next round`);
       props.incrementScore();
     }
   };
