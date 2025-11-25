@@ -7,7 +7,7 @@ import abrams from "../assets/abrams.png";
 
 function GameContainer(props) {
   // array of card objects containing their name and image url, can change later to fetch from api later
-  const heroes = [
+  let heroes = [
     {
       name: "Shiv",
       img: shiv,
@@ -29,6 +29,9 @@ function GameContainer(props) {
       img: warden,
     },
   ];
+
+  // shuffle order of heroes array on re-render, which will affect cards
+  heroes.sort(() => Math.random() - 0.5);
 
   // create an array of Card components from hero array to then render with GameContainer
   const heroCards = heroes.map((hero) => {
