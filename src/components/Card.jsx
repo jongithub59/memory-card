@@ -21,7 +21,7 @@ function Card(props) {
       style={{ backgroundImage: `url(${heroUrl})` }}
     >
       <div className="card-name">
-        <h1>{props.name}</h1>
+        <p>{props.name}</p>
       </div>
     </div>
   );

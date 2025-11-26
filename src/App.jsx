@@ -8,6 +8,7 @@ import "./styles/App.css";
 function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [difficulty, setDifficulty] = useState({ level: "Easy", maxScore: 5 });
   const [isGameOver, setIsGameOver] = useState(false);
 
   function incrementScore() {
@@ -29,17 +30,27 @@ function App() {
     incrementBestScore();
   }, [score]);
 
+  useEffect(() => {
+    resetGame();
+  }, [difficulty]);
+
+  function setCurrentDifficulty(diff) {
+    setDifficulty(diff);
+  }
+
   function gameOver() {
     setIsGameOver(true);
     console.log(`Game Over: ${isGameOver}`);
   }
 
-  // reset best score then restart as normal
-  function gameWon() {
+  // fully reset game then restart as normal
+  function resetGame() {
+    setScore(0);
     setBestScore(0);
     restartGame();
   }
 
+  // start the from the beginning but keep best score since game has not been won
   function restartGame() {
     setScore(0);
     setIsGameOver(false);
@@ -50,13 +61,17 @@ function App() {
       <div className="app">
         <Header>
           <ScoreTracker score={score} bestScore={bestScore}></ScoreTracker>
-          <DifficultyContainer></DifficultyContainer>
+          <DifficultyContainer
+            setCurrentDifficulty={setCurrentDifficulty}
+            difficulty={difficulty}
+          ></DifficultyContainer>
         </Header>
         {/* display game if player has not lost or reached the maximum score */}
-        {!isGameOver && score < 5 && (
+        {!isGameOver && score < difficulty.maxScore && (
           <GameContainer
             setGameOver={gameOver}
             incrementScore={incrementScore}
+            difficulty={difficulty}
           ></GameContainer>
         )}
 
@@ -69,10 +84,10 @@ function App() {
         )}
 
         {/* display victory screen if player wins */}
-        {score === 5 && (
+        {score === difficulty.maxScore && (
           <div className="game-win">
             <p>You Win. Play again?</p>{" "}
-            <button onClick={gameWon}>Restart</button>
+            <button onClick={resetGame}>Restart</button>
           </div>
         )}
       </div>

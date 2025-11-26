@@ -1,9 +1,35 @@
-function DifficultyContainer() {
+function DifficultyContainer(props) {
   return (
     <div className="difficulty-container">
-      <button className="diff-btn">Simple</button>
-      <button className="diff-btn">Intermediate</button>
-      <button className="diff-btn">Advanced</button>
+      <h2 className="diff-display">
+        Current Difficulty: {props.difficulty.level}
+      </h2>
+      <div className="difficulty-buttons">
+        <button
+          className="diff-btn"
+          onClick={() =>
+            props.setCurrentDifficulty({ level: "Easy", maxScore: 5 })
+          }
+        >
+          Easy
+        </button>
+        <button
+          className="diff-btn"
+          onClick={() =>
+            props.setCurrentDifficulty({ level: "Medium", maxScore: 8 })
+          }
+        >
+          Medium
+        </button>
+        <button
+          className="diff-btn"
+          onClick={() =>
+            props.setCurrentDifficulty({ level: "Hard", maxScore: 12 })
+          }
+        >
+          Hard
+        </button>
+      </div>
     </div>
   );
 }
