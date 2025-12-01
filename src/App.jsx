@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import DifficultyContainer from "./components/DifficultyContainer";
 import ScoreTracker from "./components/ScoreTracker";
 import GameContainer from "./components/GameContainer";
+import video from "./assets/menu_streets_loop2-vmake.mp4";
 import "./styles/App.css";
 
 function App() {
@@ -58,6 +59,9 @@ function App() {
 
   return (
     <>
+      <video autoPlay muted loop id="video-background">
+        <source src={video} type="video/mp4" />
+      </video>
       <div className="app">
         <Header>
           <ScoreTracker score={score} bestScore={bestScore}></ScoreTracker>
