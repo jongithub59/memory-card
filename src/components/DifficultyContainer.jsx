@@ -1,12 +1,14 @@
+import { useState } from "react";
+
 function DifficultyContainer(props) {
   return (
     <div className="difficulty-container">
-      <h2 className="diff-display">
-        Current Difficulty: {props.difficulty.level}
-      </h2>
       <div className="difficulty-buttons">
         <button
-          className="diff-btn"
+          // if current difficulty state is equal to the btn diff, add the activ class
+          className={`diff-btn easy-btn ${
+            props.difficulty.level === "Easy" ? "active" : ""
+          }`}
           onClick={() =>
             props.setCurrentDifficulty({ level: "Easy", maxScore: 5 })
           }
@@ -14,7 +16,9 @@ function DifficultyContainer(props) {
           Easy
         </button>
         <button
-          className="diff-btn"
+          className={`diff-btn medium-btn ${
+            props.difficulty.level === "Medium" ? "active" : ""
+          }`}
           onClick={() =>
             props.setCurrentDifficulty({ level: "Medium", maxScore: 8 })
           }
@@ -22,7 +26,9 @@ function DifficultyContainer(props) {
           Medium
         </button>
         <button
-          className="diff-btn"
+          className={`diff-btn hard-btn ${
+            props.difficulty.level === "Hard" ? "active" : ""
+          }`}
           onClick={() =>
             props.setCurrentDifficulty({ level: "Hard", maxScore: 12 })
           }
