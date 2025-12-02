@@ -35,7 +35,7 @@ video {
   z-index: -1;
   right: 0;
   bottom: 0;
-  object-fit: center;
+  object-fit: cover;
   min-width: 100%;
   min-height: 100%;
 }
@@ -62,7 +62,7 @@ button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  margin: 0 10px;
+  margin: 5px 10px;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -81,82 +81,82 @@ button:hover {
 .app {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  padding: 24px;
+  padding: 20px;
   align-items: center;
-  justify-content: start;
 }
 
 .header-container {
   display: flex;
   align-items: center;
-  margin: 20px;
+  margin: 10px 0;
+  gap: 10px;
 }
 
 .header-container h1 {
-  font-size: 50px;
+  font-size: 3rem;
 }
 
 .logo img {
   height: 60px;
-  margin: 0 5px;
 }
 
 .score-container {
   margin: 10px;
   display: flex;
-  min-width: 350px;
+  min-width: 250px;
+  width: 90%;
+  max-width: 350px;
   justify-content: space-between;
 }
 
 .score-container h3 {
-  font-size: 23px;
+  font-size: 1.4rem;
 }
 
 .difficulty-container {
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 10px;
 }
 
-.game-container {
+.difficulty-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  padding: 20px;
-  margin: 10px;
-  width: 85%;
-  min-height: 400px;
-  height: auto;
 }
 
-.progress {
-  font-size: 30px;
+.game-container {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 900px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 
 .card {
-  flex: 1 1 200px;
-  max-width: 200px;
-  max-height: 270px;
+  width: 100%;
+  aspect-ratio: 3/4;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
   cursor: pointer;
   overflow: hidden;
   border: 10px solid black;
   background-color: #423837;
   background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
+}
+
+.progress {
+  font-size: 2rem;
+  margin-top: 20px;
 }
 
 .card-name {
   margin-top: auto;
   font-family: "noir";
-  font-size: 50px;
+  font-size: 36px;
   font-weight: bold;
   color: #ffefd7;
   -webkit-text-stroke: 0.8px #000000;
@@ -182,5 +182,84 @@ button:hover {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+/* mobile */
+@media (max-width: 480px) {
+  .app {
+    padding: 10px;
+  }
+
+  .header-container {
+    margin-bottom: 0;
+  }
+
+  .header-container h1 {
+    font-size: 2.2rem;
+  }
+
+  .logo img {
+    height: 45px;
+  }
+
+  .score-container {
+    max-width: 250px;
+  }
+
+  .score-container h3 {
+    font-size: 1rem;
+  }
+
+  .difficulty-buttons button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .game-container {
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    padding: 5px;
+  }
+
+  .card {
+    max-width: 140px;
+  }
+
+  .card-name {
+    font-size: 1.8rem;
+  }
+
+  .progress {
+    font-size: 1.2rem;
+  }
+}
+
+/* tablets and smaller screens */
+@media (min-width: 481px) and (max-width: 800px) {
+  .header-container h1 {
+    font-size: 2.5rem;
+  }
+
+  .score-container h3 {
+    font-size: 1.2rem;
+  }
+
+  .card-name {
+    font-size: 2.2rem;
+  }
+
+  .progress {
+    font-size: 1.6rem;
+  }
+}
+
+/* bigger screens */
+@media (min-width: 1200px) {
+  .header-container h1 {
+    font-size: 3.5rem;
+  }
+
+  .card-name {
+    font-size: 2.2rem;
   }
 }
