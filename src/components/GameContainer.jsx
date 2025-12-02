@@ -10,7 +10,7 @@ import mirage from "../assets/mirage.png";
 import infernus from "../assets/infernus.png";
 import billy from "../assets/billy.png";
 import doorman from "../assets/the_doorman.png";
-import grey_talon from "../assets/grey_talon.png";
+import bebop from "../assets/bebop.png";
 
 function GameContainer(props) {
   // array of card objects containing their name and image url, can change later to fetch from api later
@@ -48,8 +48,8 @@ function GameContainer(props) {
       img: lash,
     },
     {
-      name: "Grey Talon",
-      img: grey_talon,
+      name: "Bebop",
+      img: bebop,
     },
     {
       name: "Doorman",
@@ -85,7 +85,14 @@ function GameContainer(props) {
     );
   });
 
-  return <div className="game-container">{heroCards}</div>;
+  return (
+    <>
+      <div className="game-container">{heroCards}</div>
+      <div className="progress">
+        {props.score}/{props.difficulty.maxScore}
+      </div>
+    </>
+  );
 }
 
 export default GameContainer;
