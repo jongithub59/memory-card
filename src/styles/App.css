@@ -125,7 +125,7 @@ button:hover {
 
 .game-container {
   display: grid;
-  gap: 10px;
+  gap: 15px;
   padding: 20px;
   width: 100%;
   max-width: 900px;
@@ -156,7 +156,6 @@ button:hover {
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.6s ease;
-  border: 10px solid black;
 }
 
 .front,
@@ -183,12 +182,12 @@ button:hover {
 }
 
 .card:hover .card-inner {
-  transform: rotateY(var(180deg, 0deg));
+  transform: rotateY(var(--rot, 0deg));
 }
 
-/* .card.flip .card-inner {
+.card.flip .card-inner {
   --rot: 180deg;
-} */
+}
 
 .card-content {
   display: flex;
@@ -204,6 +203,16 @@ button:hover {
   background-position: center;
   background-size: cover;
   backface-visibility: hidden;
+  padding: 2px;
+}
+
+.no-mouse {
+  pointer-events: none;
+}
+
+.no-hover.card:hover {
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .progress {

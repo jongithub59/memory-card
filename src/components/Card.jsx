@@ -4,13 +4,19 @@ function Card(props) {
   const [flip, setFlip] = useState(false);
   const heroUrl = props.url;
 
-  // flip card when flipAll is true (this will flip every card)
+  // set flip to true when flipAll is true (this will flip every card)
   useEffect(() => {
     setFlip(props.flipAll);
   }, [props.flipAll]);
 
   return (
-    <div className={`card ${flip ? "flip" : ""}`} onClick={props.handleClick}>
+    <div
+      // add flip class when flip is true which will flip cards
+      className={`card ${flip ? "flip " : ""} ${
+        props.noMouse ? "no-mouse no-hover" : ""
+      }`}
+      onClick={props.handleClick}
+    >
       <div className="card-inner">
         <div className="front">
           <div

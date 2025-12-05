@@ -67,6 +67,7 @@ function GameContainer(props) {
     },
   ];
 
+  const [noMouse, setNoMouse] = useState(false);
   const [flipAll, setFlipAll] = useState(false);
   const [shuffledHeroes, setShuffledHeroes] = useState([]);
   // need to move clicked state up because the new shuffling causes the local clicked state to be out of sync
@@ -87,12 +88,13 @@ function GameContainer(props) {
   useEffect(() => {
     const limited = heroes.slice(0, props.difficulty.maxScore);
     setShuffledHeroes([...limited].sort(() => Math.random() - 0.5));
-    setFlipAll[false];
+    setFlipAll(false);
   }, [props.difficulty]);
 
   // flip cards then wait 600ms for flip to finish, then shuffle cards, increment score then flip back over after 1.2s
   function shuffleSequence() {
     setFlipAll(true);
+    setNoMouse(true); // disable clicking during flipping
 
     setTimeout(() => {
       shuffleCards();
@@ -102,6 +104,11 @@ function GameContainer(props) {
     setTimeout(() => {
       setFlipAll(false);
     }, 1200);
+
+    // re-enable clicking slightly after flipping back is done
+    setTimeout(() => {
+      setNoMouse(false);
+    }, 1600);
   }
 
   // move shuffled heroes to state variable, so react re-renders when shuffledHeroes changes, not when score changes
@@ -119,6 +126,7 @@ function GameContainer(props) {
         flipAll={flipAll}
         handleClick={() => handleCardClick(hero.name)}
         isClicked={clickedCards.has(hero.name)}
+        noMouse={noMouse}
       />
     );
   });
