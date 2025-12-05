@@ -41,17 +41,16 @@ function App() {
 
   function gameOver() {
     setIsGameOver(true);
-    console.log(`Game Over: ${isGameOver}`);
   }
 
-  // fully reset game then restart as normal
+  // fully reset game then restart as normal (game over)
   function resetGame() {
     setScore(0);
     setBestScore(0);
     restartGame();
   }
 
-  // start the from the beginning but keep best score since game has not been won
+  // start the from the beginning but keep best score (when game is won)
   function restartGame() {
     setScore(0);
     setIsGameOver(false);
@@ -77,6 +76,7 @@ function App() {
             incrementScore={incrementScore}
             difficulty={difficulty}
             score={score}
+            resetGame={resetGame}
           ></GameContainer>
         )}
 

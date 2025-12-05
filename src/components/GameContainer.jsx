@@ -11,6 +11,8 @@ import infernus from "../assets/infernus.png";
 import billy from "../assets/billy.png";
 import doorman from "../assets/the_doorman.png";
 import bebop from "../assets/bebop.png";
+import { useState } from "react";
+import { useEffect } from "react";
 
 function GameContainer(props) {
   // array of card objects containing their name and image url, can change later to fetch from api later
@@ -65,22 +67,47 @@ function GameContainer(props) {
     },
   ];
 
-  // only allow the amount of cards for the difficulty type to be rendered ex. easy = 5 cards
-  heroes = heroes.filter((hero, index) => index < props.difficulty.maxScore);
+  const [flipAll, setFlipAll] = useState(false);
+  const [shuffledHeroes, setShuffledHeroes] = useState([]);
 
-  // shuffle order of heroes array on re-render, which will affect cards
-  heroes.sort(() => Math.random() - 0.5);
+  // move hero amount selection and initial shuffle to an effect that updates on difficulty change
+  useEffect(() => {
+    const limited = heroes.slice(0, props.difficulty.maxScore);
+    setShuffledHeroes([...limited].sort(() => Math.random() - 0.5));
+    setFlipAll[false];
+  }, [props.difficulty]);
 
-  // create an array of Card components from hero array to then render with GameContainer
-  const heroCards = heroes.map((hero) => {
+  // flip cards then wait 600ms for flip to finish, then shuffle cards, increment score then flip back over after 1.2s
+  function shuffleSequence() {
+    setFlipAll(true);
+
+    setTimeout(() => {
+      shuffleCards();
+      props.incrementScore();
+    }, 600);
+
+    setTimeout(() => {
+      setFlipAll(false);
+    }, 1200);
+  }
+
+  // move shuffled heroes to state variable, so react re-renders when shuffledHeroes changes, not when score changes
+  function shuffleCards() {
+    setShuffledHeroes((prev) => [...prev].sort(() => Math.random() - 0.5));
+  }
+
+  // shuffle heroes array then create an array of Card components from hero array to then render with GameContainer
+  const heroCards = shuffledHeroes.map((hero) => {
     return (
       <Card
         // props for each Card
         key={hero.name}
         url={hero.img}
         setGameOver={props.setGameOver}
-        incrementScore={props.incrementScore}
+        onSuccess={shuffleSequence}
         name={hero.name}
+        flipAll={flipAll}
+        difficulty={props.difficulty}
       />
     );
   });
