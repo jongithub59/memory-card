@@ -69,6 +69,19 @@ function GameContainer(props) {
 
   const [flipAll, setFlipAll] = useState(false);
   const [shuffledHeroes, setShuffledHeroes] = useState([]);
+  // need to move clicked state up because the new shuffling causes the local clicked state to be out of sync
+  const [clickedCards, setClickedCards] = useState(new Set());
+
+  // card click logic moved here to ensure clicked state is always correct
+  function handleCardClick(heroName) {
+    if (clickedCards.has(heroName)) {
+      // check if card was clicked
+      props.setGameOver();
+    } else {
+      setClickedCards((prev) => new Set(prev).add(heroName)); // add card to clicked cards set
+      shuffleSequence();
+    }
+  }
 
   // move hero amount selection and initial shuffle to an effect that updates on difficulty change
   useEffect(() => {
@@ -100,14 +113,12 @@ function GameContainer(props) {
   const heroCards = shuffledHeroes.map((hero) => {
     return (
       <Card
-        // props for each Card
         key={hero.name}
         url={hero.img}
-        setGameOver={props.setGameOver}
-        onSuccess={shuffleSequence}
         name={hero.name}
         flipAll={flipAll}
-        difficulty={props.difficulty}
+        handleClick={() => handleCardClick(hero.name)}
+        isClicked={clickedCards.has(hero.name)}
       />
     );
   });
