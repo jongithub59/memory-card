@@ -1,72 +1,9 @@
 import Card from "./Card";
-import shiv from "../assets/shiv.png";
-import pocket from "../assets/pocket.png";
-import holliday from "../assets/holliday.png";
-import warden from "../assets/warden.png";
-import abrams from "../assets/abrams.png";
-import vindicta from "../assets/vindicta.png";
-import lash from "../assets/lash.png";
-import mirage from "../assets/mirage.png";
-import infernus from "../assets/infernus.png";
-import billy from "../assets/billy.png";
-import doorman from "../assets/the_doorman.png";
-import bebop from "../assets/bebop.png";
+import heroes from "../assets/heroes/heroes.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
 
 function GameContainer(props) {
-  // array of card objects containing their name and image url, can change later to fetch from api later
-  let heroes = [
-    {
-      name: "Shiv",
-      img: shiv,
-    },
-    {
-      name: "Pocket",
-      img: pocket,
-    },
-    {
-      name: "Abrams",
-      img: abrams,
-    },
-    {
-      name: "Holliday",
-      img: holliday,
-    },
-    {
-      name: "Warden",
-      img: warden,
-    },
-    {
-      name: "Infernus",
-      img: infernus,
-    },
-    {
-      name: "Mirage",
-      img: mirage,
-    },
-    {
-      name: "Lash",
-      img: lash,
-    },
-    {
-      name: "Bebop",
-      img: bebop,
-    },
-    {
-      name: "Doorman",
-      img: doorman,
-    },
-    {
-      name: "Billy",
-      img: billy,
-    },
-    {
-      name: "Vindicta",
-      img: vindicta,
-    },
-  ];
-
   const [noMouse, setNoMouse] = useState(false);
   const [flipAll, setFlipAll] = useState(false);
   const [shuffledHeroes, setShuffledHeroes] = useState([]);
