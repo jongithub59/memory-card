@@ -63,6 +63,7 @@ button {
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   margin: 5px 10px;
+  color: #ffefd7;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -101,7 +102,7 @@ button:hover {
 }
 
 .score-container {
-  margin: 10px;
+  margin: 7px;
   display: flex;
   min-width: 250px;
   width: 90%;
@@ -111,10 +112,6 @@ button:hover {
 
 .score-container h3 {
   font-size: 1.4rem;
-}
-
-.difficulty-container {
-  margin: 10px;
 }
 
 .difficulty-buttons {
@@ -216,7 +213,7 @@ button:hover {
 }
 
 .progress {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-top: 20px;
 }
 .game-over,
@@ -262,13 +259,19 @@ button:hover {
 
   .score-container {
     max-width: 250px;
+    margin-bottom: 0;
   }
 
   .score-container h3 {
     font-size: 1rem;
   }
 
+  .difficulty-container {
+    margin: 5px;
+  }
+
   .difficulty-buttons button {
+    height: 45px;
     font-size: 0.9rem;
     padding: 0.4rem 0.8rem;
   }
@@ -293,12 +296,17 @@ button:hover {
 
 /* tablets and smaller screens */
 @media (min-width: 481px) and (max-width: 800px) {
-  .header-container h1 {
-    font-size: 2.5rem;
+  .score-container {
+    max-width: 300px;
+    margin-bottom: 7px;
   }
 
   .score-container h3 {
     font-size: 1.2rem;
+  }
+
+  .difficulty-buttons button {
+    height: 45px;
   }
 
   .card-name {
