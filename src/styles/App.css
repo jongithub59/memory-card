@@ -30,6 +30,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.app {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  min-height: 90vh;
+}
+
 video {
   position: fixed;
   z-index: -1;
@@ -38,6 +46,18 @@ video {
   object-fit: cover;
   min-width: 100%;
   min-height: 100%;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+  margin: auto;
+}
+
+.loading img {
+  height: 45px;
+  margin: 0 5px;
 }
 
 a {
@@ -77,13 +97,6 @@ button:hover {
 
 .diff-btn.active {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-.app {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  align-items: center;
 }
 
 .header-container {
