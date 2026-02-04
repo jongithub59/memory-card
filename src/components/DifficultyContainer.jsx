@@ -20,7 +20,7 @@ function DifficultyContainer(props) {
             props.difficulty.level === "Medium" ? "active" : ""
           }`}
           onClick={() =>
-            props.setCurrentDifficulty({ level: "Medium", maxScore: 8 })
+            props.setCurrentDifficulty({ level: "Medium", maxScore: 10 })
           }
         >
           Medium
@@ -30,7 +30,7 @@ function DifficultyContainer(props) {
             props.difficulty.level === "Hard" ? "active" : ""
           }`}
           onClick={() =>
-            props.setCurrentDifficulty({ level: "Hard", maxScore: 12 })
+            props.setCurrentDifficulty({ level: "Hard", maxScore: 15 })
           }
         >
           Hard
