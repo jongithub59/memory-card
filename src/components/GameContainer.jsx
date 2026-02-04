@@ -1,5 +1,4 @@
 import Card from "./Card";
-import heroes from "../assets/heroes/heroes.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -23,7 +22,7 @@ function GameContainer(props) {
 
   // move hero amount selection and initial shuffle to an effect that updates on difficulty change
   useEffect(() => {
-    const limited = heroes
+    const limited = props.heroes
       .sort(() => Math.random() - 0.5) // .sort randomizes the heroes array (moved from setShuffledHeroes state logic below)
       .slice(0, props.difficulty.maxScore); // .slice creates a new array from the randomized array to use for the game, ensuring the same heroes aren't used for every game
     setShuffledHeroes([...limited]); // update the shuffled heroes state

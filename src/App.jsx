@@ -8,17 +8,33 @@ import Loading from "./components/Loading";
 import "./styles/App.css";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [difficulty, setDifficulty] = useState({ level: "Easy", maxScore: 5 });
   const [isGameOver, setIsGameOver] = useState(false);
+  const [heroes, setHeroes] = useState([]);
+  const [error, setError] = useState(null);
 
-  // show load screen for 1 second then set loading to false to display main page
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(true);
-    }, 1000);
+    fetch("https://assets.deadlock-api.com/v2/heroes")
+      .then((response) => response.json())
+      .then((response) =>
+        response
+          .filter((hero) => {
+            // this filters out incomplete heroes in the files who do not have images, as heroes with descriptions all have images.
+            // what's cool about this is that as heroes are added they will automatically be added to this applicaton
+            return hero.description.lore;
+          })
+          .map((hero) => ({
+            // creates and array of objects containing their names and image urls as properties
+            name: hero.name,
+            img: hero.images.icon_hero_card,
+          })),
+      )
+      .then((response) => setHeroes(response)) // update state variable for heroes array
+      .catch((error) => setError(error)) // error handling
+      .finally(() => setIsLoading(false)); // update loading state so page content is rendered
   }, []);
 
   function incrementScore() {
@@ -65,9 +81,11 @@ function App() {
     setIsGameOver(false);
   }
 
+  if (error) return <p>A network error was encountered</p>;
+
   return (
     <>
-      {!isLoading ? (
+      {isLoading ? (
         <div className="app">
           <Loading />
         </div>
@@ -89,6 +107,7 @@ function App() {
                 difficulty={difficulty}
                 score={score}
                 resetGame={resetGame}
+                heroes={heroes}
               ></GameContainer>
             )}
 
