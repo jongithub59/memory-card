@@ -17,7 +17,7 @@ function App() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://assets.deadlock-api.com/v2/heroes")
+    fetch("https://api.deadlock-api.com/v1/assets/heroes")
       .then((response) => response.json())
       .then((response) =>
         response
