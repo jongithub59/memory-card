@@ -116,15 +116,20 @@ button:hover {
 
 .score-container {
   margin: 7px;
+  padding: 25px;
+  border-radius: 15px;
   display: flex;
   min-width: 250px;
   width: 90%;
-  max-width: 350px;
+  max-width: 450px;
   justify-content: space-between;
+  background-color: #242424ee;
 }
 
 .score-container h3 {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  /* color: #ffffff; */
+  -webkit-text-stroke: 0.25px #000000;
 }
 
 .difficulty-buttons {
@@ -273,12 +278,12 @@ button:hover {
   }
 
   .score-container {
-    max-width: 250px;
+    max-width: 275px;
     margin-bottom: 0;
   }
 
   .score-container h3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .difficulty-container {
@@ -317,7 +322,7 @@ button:hover {
   }
 
   .score-container h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .difficulty-buttons button {
